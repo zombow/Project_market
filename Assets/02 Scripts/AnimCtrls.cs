@@ -34,6 +34,7 @@ public class AnimCtrls : MonoBehaviour
     void Update()
     {
         dist = Vector3.Distance(player.transform.position, tr.position);
+        Debug.Log(dist);
         dir = player.transform.position - tr.position;
         dir.Normalize();
         switch(state)
@@ -83,7 +84,7 @@ public class AnimCtrls : MonoBehaviour
     {  
         tr.LookAt(new Vector3(player.transform.position.x, 0, player.transform.position.z));
 
-        if(dist > TalkDistance)
+        if(dist > TalkDistance + 1f)
         {
             anim.SetTrigger("Greet_0"+ Random.Range(1, 3));
             state = State.Waving;
@@ -91,8 +92,7 @@ public class AnimCtrls : MonoBehaviour
     }
     void EndTalk()
     {
-            float rdTalk = Random.Range(1, 5);
-            anim.SetTrigger("Talk_0"+ rdTalk);
+            anim.SetTrigger("Talk_0"+ Random.Range(1, 5));
     }
 
 }
